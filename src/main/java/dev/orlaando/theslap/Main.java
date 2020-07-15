@@ -12,18 +12,19 @@ import javax.security.auth.login.LoginException;
 
 public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+    public static JDA client;
 
     public static void main(String[] args) {
-
         try {
-            JDA jda = JDABuilder.createDefault("token")
+             JDA jda = JDABuilder.createDefault("token")
                     .setActivity(Activity.playing("use !help"))
                     .build();
+            client = jda;
+
             LOGGER.info("Logged in as " + jda.getSelfUser().getAsTag());
 
-            jda.addEventListener(new Command());
+            Command.registerCommands();
             LOGGER.info("Registed commands.");
-
         } catch (LoginException e) {
             LOGGER.error("Failed to login", e);
         }
