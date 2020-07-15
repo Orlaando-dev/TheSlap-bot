@@ -24,9 +24,7 @@ public abstract class Command extends ListenerAdapter {
     @Override public void onMessageReceived(MessageReceivedEvent event) {
 
         if (event.getMessage().getContentDisplay().startsWith(commandName)) {
-
             if (supportOnly) {
-
                 boolean hasSupportTeamRole = event.getMember().getRoles()
                         .stream().anyMatch(role ->
                         role.getName().equalsIgnoreCase("support team"));
