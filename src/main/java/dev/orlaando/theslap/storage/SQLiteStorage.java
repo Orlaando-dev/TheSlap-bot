@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.concurrent.CompletableFuture;
 
 public class SQLiteStorage {
     private static final Logger LOGGER = LoggerFactory.getLogger(SQLiteStorage.class);
@@ -29,6 +30,28 @@ public class SQLiteStorage {
                 throw new RuntimeException("Could not create database.db");
             }
         }
+    }
+
+    @Override
+    public CompletableFuture<TODO>  queryChanges(@NotNull final ChangeQuery change) {
+        new Thread(() -> {
+            synchronized (this.statementLock) {
+                try {
+                    //do stuff soon
+                }
+            }
+        });
+    }
+
+    @Override
+    public void updateChanges(@NotNull final ChangeUpdate change) {
+        new Thread(() -> {
+            synchronized (this.statementLock) {
+                try {
+                    //do stuff soon
+                }
+            }
+        });
     }
 
     public boolean startStorage() {
